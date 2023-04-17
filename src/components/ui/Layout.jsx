@@ -1,15 +1,9 @@
-import { Outlet, Link } from "react-router-dom";
-
-import Header from "./Header";
-import SideBar from "./Sidebar";
+import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
     <>
-      <Header />
       <Outlet />
-      <footer>Footer</footer>
-      <SideBar />
     </>
   );
 }

@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header() {
+function Header({ openSidebar }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -62,6 +62,7 @@ function Header() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={openSidebar}
           >
             <MenuIcon />
           </IconButton>
