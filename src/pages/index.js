@@ -1,7 +1,8 @@
-import MainPage from './MainPage';
+import CharactersPage from './CharactersPage';
 import NotFoundPage from './NotFoundPage';
 import CatalogPage from './CatalogPage';
 import ProductPage from './ProductPage';
 import SingleProductPage from './SingleProductPage';
+import SingleCharacterPage from './SingleCharacterPage';
 
-export { MainPage, NotFoundPage, CatalogPage, ProductPage, SingleProductPage };
+export { CharactersPage, NotFoundPage, CatalogPage, ProductPage, SingleProductPage, SingleCharacterPage };

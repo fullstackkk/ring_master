@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import {
-  MainPage,
+  CharactersPage,
   CatalogPage,
   NotFoundPage,
   ProductPage,
   SingleProductPage,
+  SingleCharacterPage,
 } from "../../pages";
 import Header from "../ui/Header";
 import SideBar from "../ui/Sidebar";
@@ -27,7 +28,8 @@ function App() {
       <Container maxWidth="md" sx={{ mt: "20px" }}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<MainPage />} />
+            <Route index element={<CharactersPage />} />
+            <Route path="/:id" element={<SingleCharacterPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/product/:id" element={<SingleProductPage />} />
