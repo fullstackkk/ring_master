@@ -72,7 +72,7 @@ function Header({ openSidebar }) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            Вселенная "Властелин Колец"
           </Typography>
           <Search>
             <SearchIconWrapper>
