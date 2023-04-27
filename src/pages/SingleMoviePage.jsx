@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -5,36 +7,34 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
-import Divider from "@mui/material/Divider";
+import Cell from "../components/ui/Cell";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useService from "../helpers/service";
-import Cell from "../components/ui/Cell";
-function SingleCharacterPage() {
-  const [character, setCharacter] = useState(null);
+function SingleMoviePage() {
+  const [movie, setMovie] = useState(null);
+  const [quote, setQuote] = useState(null);
   const { id } = useParams();
-  const { getCharacterById } = useService();
-  const dispatch = useDispatch();
+  const { getMovieById, getMovieQuote } = useService();
 
   useEffect(() => {
     if (id === 0) return;
-    getCharacterById(id).then((res) => {
-      setCharacter(res);
+    getMovieById(id).then((res) => {
+      setMovie(res.docs[0]);
+    });
+    getMovieQuote(id).then((res) => {
+      setQuote(res);
     });
   }, [id]);
-  useEffect(() => {
-    if (!character) return;
-    dispatch({
-      type: "UPDATE_TITLE",
-      payload: character.name,
-    });
-  }, [character]);
 
+  useEffect(() => {
+    if (!quote) return;
+    console.log(quote);
+  }, [quote]);
   return (
     <div>
-      {character ? (
+      {movie ? (
         <>
           <Typography
             variant="h2"
@@ -45,7 +45,7 @@ function SingleCharacterPage() {
               fontWeight: "bold",
             }}
           >
-            {character.name}
+            {movie.name}
           </Typography>
           <Paper
             sx={{
@@ -63,34 +63,28 @@ function SingleCharacterPage() {
               direction="row"
               justifyContent="flex-start"
             >
-              <Cell header="Имя" textContent={character.name} />
-              <Divider
-                sx={{
-                  h: "1px",
-                }}
-              />
-              <Cell header="Расса" textContent={character.race} />
-              <Cell header="Пол" textContent={character.gender} />
+              <Cell header="Название" textContent={movie.name} />
               <Cell
-                header="Дата рождения"
-                textContent={character.birth ? character.birth : "Не указано"}
+                header="Номинаций на Оскар"
+                textContent={movie.academyAwardNominations}
+              />
+              <Cell header="Оскар" textContent={movie.academyAwardWins} />
+              <Cell
+                header="Зборы за все время"
+                textContent={movie.boxOfficeRevenueInMillions + " 000 000 $"}
               />
               <Cell
-                header="Дата смерти"
-                textContent={character.death ? character.death : "Не указано"}
+                header="Бюджет"
+                textContent={movie.budgetInMillions + " 000 000 $"}
               />
-
-              <Button
-                variant="outlined"
-                color="primary"
-                sx={{
-                  margin: "0 10px ",
-                }}
-              >
-                <Link href={character.wikiUrl} underline="none">
-                  Посетить страницу на Википедии
-                </Link>
-              </Button>
+              <Cell
+                header="Продолжительность"
+                textContent={movie.runtimeInMinutes + "мин."}
+              />
+              <Cell
+                header="Рейтинг на 'Rotten Tomatoes'"
+                textContent={movie.rottenTomatoesScore}
+              />
             </Grid>
           </Paper>
         </>
@@ -112,4 +106,4 @@ function SingleCharacterPage() {
   );
 }
 
-export default SingleCharacterPage;
+export default SingleMoviePage;

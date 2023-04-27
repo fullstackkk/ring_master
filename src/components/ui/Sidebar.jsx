@@ -8,17 +8,17 @@ function SideBar({ open, close }) {
       <List>
         <ListItem>
           <NavLink to="/" className="nav-link">
-            <Typography variant="h5">Home</Typography>
+            <Typography variant="h5">Главная</Typography>
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="/product" className="nav-link">
-            <Typography variant="h5">Products</Typography>
+          <NavLink to="/characters" className="nav-link">
+            <Typography variant="h5">Персонажи</Typography>
           </NavLink>
         </ListItem>
         <ListItem>
-          <NavLink to="/catalog" className="nav-link">
-            <Typography variant="h5">Catalog</Typography>
+          <NavLink to="/movie" className="nav-link">
+            <Typography variant="h5">Фильмы</Typography>
           </NavLink>
         </ListItem>
       </List>

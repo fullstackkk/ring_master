@@ -18,9 +18,15 @@ const useService = () => {
         return res
     }
 
+    const getMovieQuote = async (id) => {
+        const res = await request(`${apiBase}/movie/${id}/quote`);
+        return res
+    }
+
     const getAllCharacter = async (limit, character) => {
         const options = character ? `?name=${character}` : '';
-        const res = await request(`${apiBase}/character${options}?limit=${limit}}`);
+        const isLimit = limit ? `?limit=${limit}` : ''
+        const res = await request(`${apiBase}/character${options}${isLimit}`);
         return res.docs.map((character) => {
             return {
                 birth: character.birth,
@@ -49,6 +55,7 @@ const useService = () => {
             wikiUrl: character.wikiUrl,
         }
     }
+
     const getQuote = async () => {
         const res = await request(`${apiBase}/quote`);
         return res
@@ -59,7 +66,7 @@ const useService = () => {
     }
 
 
-    return { loading, error, clearError, getAllMovie, getMovieById, getAllCharacter, getCharacterById, getCharacterQuote, getQuote }
+    return { loading, error, clearError, getAllMovie, getMovieById, getAllCharacter, getCharacterById, getCharacterQuote, getQuote, getMovieQuote }
 }
 
 export default useService;
