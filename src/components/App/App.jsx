@@ -1,5 +1,4 @@
-import { lazy, Suspense, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { Container } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
@@ -15,16 +14,9 @@ import SideBar from "../ui/Sidebar";
 import Layout from "../ui/Layout";
 import "./App.css";
 
-const user = {
-  firstName: "Angela",
-  lastName: "Davis",
-  role: "Professor",
-};
-
-console.log(user.name);
-
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
+
   function openSidebar() {
     setOpenSideBar(true);
   }

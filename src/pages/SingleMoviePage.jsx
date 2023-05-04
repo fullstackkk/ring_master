@@ -8,8 +8,8 @@ import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import Cell from "../components/ui/Cell";
-
 import { useSelector, useDispatch } from "react-redux";
+
 import { useParams } from "react-router-dom";
 import useService from "../helpers/service";
 function SingleMoviePage() {
@@ -17,6 +17,8 @@ function SingleMoviePage() {
   const [quote, setQuote] = useState(null);
   const { id } = useParams();
   const { getMovieById, getMovieQuote } = useService();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (id === 0) return;
@@ -29,9 +31,11 @@ function SingleMoviePage() {
   }, [id]);
 
   useEffect(() => {
-    if (!quote) return;
-    console.log(quote);
-  }, [quote]);
+    if (movie) {
+      dispatch({ type: "CHANGE_TITLE", payload: movie.name });
+    }
+  }, [movie]);
+
   return (
     <div>
       {movie ? (

@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
+import { useDispatch } from "react-redux";
 
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useService from "../helpers/service";
@@ -16,6 +16,7 @@ function SingleCharacterPage() {
   const [character, setCharacter] = useState(null);
   const { id } = useParams();
   const { getCharacterById } = useService();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,14 +25,12 @@ function SingleCharacterPage() {
       setCharacter(res);
     });
   }, [id]);
-  useEffect(() => {
-    if (!character) return;
-    dispatch({
-      type: "UPDATE_TITLE",
-      payload: character.name,
-    });
-  }, [character]);
 
+  useEffect(() => {
+    if (character) {
+      dispatch({ type: "CHANGE_TITLE", payload: character.name });
+    }
+  }, [character]);
   return (
     <div>
       {character ? (

@@ -2,12 +2,14 @@ import { Grid } from "@mui/material";
 import Card from "../components/ui/Card";
 import { useEffect, useState } from "react";
 import useService from "../helpers/service";
-
+import { useDispatch } from "react-redux";
 function MoviePage() {
   const [movieList, setMovieList] = useState([]);
   const { getAllMovie } = useService();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch({ type: "CHANGE_TITLE", payload: "Фильмы" });
     getAllMovie().then((res) => {
       setMovieList(res);
     });

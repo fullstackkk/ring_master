@@ -1,23 +1,22 @@
-import { createStore } from "redux"
 
-const initialState = {
-    title: 'The Lord of the Rings',
-    characters: [],
-}
+import { createStore } from 'redux';
 
-const store = createStore((state = initialState, action) => {
+const reducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_CHARACTERS':
-            return {
-                ...state,
-                characters: action.payload
-            }
-        case 'SET_TITLE':
+        case 'CHANGE_TITLE':
+            document.title = action.payload
             return {
                 ...state,
                 title: action.payload
             }
+
         default:
             return state
     }
-})
+}
+
+
+const store = createStore(reducer) // store
+
+
+export default store;

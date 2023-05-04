@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useService from "../helpers/service";
 import useDebounce from "../helpers/dobounce";
-
+import { useDispatch } from "react-redux";
 function MainPage() {
   const [characterList, setCharacterList] = useState([]);
   const [characterId, setCharacterId] = useState(0);
@@ -18,11 +18,13 @@ function MainPage() {
   const [limit, setLimit] = useState(10);
   const debouncedSearchValue = useDebounce(searchValue, 1000);
   const { getAllCharacter, loading } = useService();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getAllCharacter(limit).then((res) => {
       setCharacterList(res);
     });
+    dispatch({ type: "CHANGE_TITLE", payload: "Персонажи" });
   }, [limit]);
 
   useEffect(() => {

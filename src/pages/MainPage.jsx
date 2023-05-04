@@ -1,6 +1,21 @@
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { ModalNotification } from "../modals";
 
 function MainPage() {
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch({ type: "CHANGE_TITLE", payload: "Вселенная Властелина Колец!" });
+
+    setTimeout(() => {
+      setOpen(true);
+    }, 2000);
+  }, []);
+
   return (
     <>
       <Typography
@@ -37,6 +52,10 @@ function MainPage() {
         другом мире и уйти в мир фантазии вместе с людьми, которые разделяют мою
         любовь к Властелину Колец.
       </p>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
+        Open form dialog
+      </Button> */}
+      <ModalNotification isOpen={open} />
     </>
   );
 }
