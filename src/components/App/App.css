@@ -2,6 +2,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  overflow: hidden;
   height: 100vh;
 }
 .App::before {
@@ -18,4 +19,5 @@
   opacity: 0.6;
   z-index: -1;
   background-image: url("../../assets/wp_leg.jpg");
+  background-attachment: scroll;
 }

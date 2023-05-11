@@ -26,7 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header openSidebar={openSidebar} />
+      <Header
+        openSidebar={openSidebar}
+        sx={{
+          position: "fixed",
+        }}
+      />
       <Container maxWidth="lg" sx={{ mt: "20px" }}>
         <Routes>
           <Route path="/" element={<Layout />}>

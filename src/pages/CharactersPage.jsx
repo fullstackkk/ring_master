@@ -1,11 +1,10 @@
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
-
+import { List, ListItem, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useService from "../helpers/service";
@@ -99,24 +98,34 @@ const Content = ({
     <>
       {characterList.length > 0 ? (
         <>
-          <ul
+          <List
             style={{
               listStyle: "none",
+              height: "60vh",
+              overflow: "scroll",
             }}
           >
             {characterList.length > 0 &&
               characterList.map((character) => {
                 return (
-                  <li key={character.id}>
-                    <h2 onClick={() => setCharacterId(character.id)}>
-                      <Link variant="body2" to={`/characters/${character.id}`}>
+                  <ListItem key={character.id}>
+                    <Link
+                      variant="h3"
+                      to={`/characters/${character.id}`}
+                      className="nav-link"
+                    >
+                      <Typography
+                        onClick={() => setCharacterId(character.id)}
+                        variant="h5"
+                      >
+                        {" "}
                         {character.name}
-                      </Link>
-                    </h2>
-                  </li>
+                      </Typography>
+                    </Link>
+                  </ListItem>
                 );
               })}
-          </ul>
+          </List>
           <Button
             variant="outlined"
             color="primary"
